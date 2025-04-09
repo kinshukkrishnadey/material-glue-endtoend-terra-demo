@@ -2,7 +2,7 @@ name: Deploy AWS Glue Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   deploy:
