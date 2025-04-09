@@ -45,28 +45,27 @@ resource "aws_glue_catalog_table" "source_table" {
   table_type = "EXTERNAL_TABLE"
 
   storage_descriptor {
-    columns
-      columns{
+      columns {
         name = "customerid"
         type = "int"
       }
-      columns{
+      columns {
         name = "first_name"
         type = "string"
       }
-      columns{
+      columns {
         name = "last_name"
         type = "string"
       }
-      columns{
+      columns {
         name = "company"
         type = "string"
       }
-      columns{
+      columns {
         name = "country"
         type = "string"
       }
-      columns{
+      columns {
         name = "email"
         type = "string"
       }
