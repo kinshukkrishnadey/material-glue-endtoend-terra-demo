@@ -54,19 +54,19 @@ resource "aws_glue_catalog_table" "source_table" {
         name = "first_name"
         type = "string"
       },
-      }
+      {
         name = "last_name"
         type = "string"
       },
-      }
+      {
         name = "company"
         type = "string"
       },
-      }
+      {
         name = "country"
         type = "string"
       },
-      }
+      {
         name = "email"
         type = "string"
       }
