@@ -45,33 +45,32 @@ resource "aws_glue_catalog_table" "source_table" {
   table_type = "EXTERNAL_TABLE"
 
   storage_descriptor {
-    columns = [
-      {
+    columns
+      columns{
         name = "customerid"
         type = "int"
-      },
-      {
+      }
+      columns{
         name = "first_name"
         type = "string"
-      },
-      {
+      }
+      columns{
         name = "last_name"
         type = "string"
-      },
-      {
+      }
+      columns{
         name = "company"
         type = "string"
-      },
-      {
+      }
+      columns{
         name = "country"
         type = "string"
-      },
-      {
+      }
+      columns{
         name = "email"
         type = "string"
       }
 
-    ]
 
     location      = "jdbc:postgresql://postgredb-instance.cyjq2iau4tvi.us-east-1.rds.amazonaws.com:5432/postgredb_demo/customers"
     input_format  = "org.apache.hadoop.mapred.TextInputFormat"
