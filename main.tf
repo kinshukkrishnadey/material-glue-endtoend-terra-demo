@@ -69,7 +69,7 @@ resource "aws_glue_catalog_table" "source_table" {
       }
         name = "email"
         type = "string"
-      },
+      }
 
     ]
 
