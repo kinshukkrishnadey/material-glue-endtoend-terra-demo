@@ -47,16 +47,33 @@ resource "aws_glue_catalog_table" "source_table" {
   storage_descriptor {
     columns = [
       {
-        name = "id"
+        name = "customerid"
         type = "int"
       },
       {
-        name = "name"
+        name = "first_name"
         type = "string"
+      },
       }
+        name = "last_name"
+        type = "string"
+      },
+      }
+        name = "company"
+        type = "string"
+      },
+      }
+        name = "country"
+        type = "string"
+      },
+      }
+        name = "email"
+        type = "string"
+      },
+
     ]
 
-    location      = "jdbc:postgresql://..."
+    location      = "jdbc:postgresql://postgredb-instance.cyjq2iau4tvi.us-east-1.rds.amazonaws.com:5432/postgredb_demo/customers"
     input_format  = "org.apache.hadoop.mapred.TextInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
