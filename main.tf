@@ -76,7 +76,7 @@ resource "aws_glue_catalog_table" "source_table" {
     input_format  = "org.apache.hadoop.mapred.TextInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
-    serde_info {
+    ser_de_info {
       name                  = "serde"
       serialization_library = "org.openx.data.jsonserde.JsonSerDe"
     }
