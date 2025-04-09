@@ -51,50 +51,6 @@ resource "aws_glue_catalog_database" "catalog_db" {
   name = var.glue_catalog_database
 }
 
-resource "aws_glue_catalog_table" "source_table" {
-  name          = var.glue_catalog_table
-  database_name = aws_glue_catalog_database.catalog_db.name
-
-  table_type = "EXTERNAL_TABLE"
-
-  storage_descriptor {
-      columns {
-        name = "customerid"
-        type = "int"
-      }
-      columns {
-        name = "first_name"
-        type = "string"
-      }
-      columns {
-        name = "last_name"
-        type = "string"
-      }
-      columns {
-        name = "company"
-        type = "string"
-      }
-      columns {
-        name = "country"
-        type = "string"
-      }
-      columns {
-        name = "email"
-        type = "string"
-      }
-
-
-    location      = "jdbc:postgresql://postgredb-instance.cyjq2iau4tvi.us-east-1.rds.amazonaws.com:5432/postgredb_demo/customers"
-    input_format  = "org.apache.hadoop.mapred.TextInputFormat"
-    output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
-
-    ser_de_info {
-      name                  = "serde"
-      serialization_library = "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe"
-    }
-  }
-}
-
 resource "aws_glue_job" "glue_etl_job" {
   name     = var.glue_job_name
   role_arn = aws_iam_role.glue_service_role.arn
