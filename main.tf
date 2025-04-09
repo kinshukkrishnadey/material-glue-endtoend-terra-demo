@@ -77,7 +77,7 @@ resource "aws_glue_catalog_table" "source_table" {
 
     ser_de_info {
       name                  = "serde"
-      serialization_library = "org.openx.data.jsonserde.JsonSerDe"
+      serialization_library = "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe"
     }
   }
 }
