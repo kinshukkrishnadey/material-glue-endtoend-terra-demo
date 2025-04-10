@@ -34,6 +34,9 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Run Glue Crawler
+        run: aws glue start-crawler --name postgres-crawler
+
       - name: Run Glue ETL Job
         run: |
           aws glue start-job-run --job-name postgres-to-parquet-etl
