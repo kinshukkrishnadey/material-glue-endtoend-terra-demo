@@ -58,7 +58,7 @@ resource "aws_glue_crawler" "postgres_crawler" {
   database_name = aws_glue_catalog_database.catalog_db.name
   description   = "Crawler to catalog PostgreSQL table"
 
-  jdbc_targets {
+  jdbc_target {
     connection_name = var.glue_connection_name  # Ensure this is defined in your vars
     path            = "public/customers"
   }
