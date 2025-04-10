@@ -18,3 +18,6 @@ variable "glue_job_name" {
   default = "postgres-to-parquet-etl"
 }
 
+variable "glue_connection_name" {
+  default     = "Jdbc connection"
+}
