@@ -60,7 +60,7 @@ resource "aws_glue_crawler" "postgres_crawler" {
 
   jdbc_target {
     connection_name = var.glue_connection_name  # Ensure this is defined in your vars
-    path            = "public/customers"
+    path            = "postgredb_demo/public/customers"
   }
 
 configuration = jsonencode({
