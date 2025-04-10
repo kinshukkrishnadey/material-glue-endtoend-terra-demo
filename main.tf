@@ -51,6 +51,30 @@ resource "aws_glue_catalog_database" "catalog_db" {
   name = var.glue_catalog_database
 }
 
+# Glue Crawler to populate Data Catalog from PostgreSQL
+resource "aws_glue_crawler" "postgres_crawler" {
+  name          = "postgres-crawler"
+  role          = aws_iam_role.glue_service_role.arn
+  database_name = aws_glue_catalog_database.catalog_db.name
+  description   = "Crawler to catalog PostgreSQL table"
+
+  jdbc_targets {
+    connection_name = var.glue_connection_name  # Ensure this is defined in your vars
+    path            = "public/customers"
+  }
+
+configuration = jsonencode({
+    Version = 1.0,
+    CrawlerOutput = {
+      Partitions = {
+        AddOrUpdateBehavior = "InheritFromTable"
+      }
+    }
+  })
+
+  depends_on = [aws_glue_catalog_database.catalog_db]
+}
+
 resource "aws_glue_job" "glue_etl_job" {
   name     = var.glue_job_name
   role_arn = aws_iam_role.glue_service_role.arn
@@ -69,5 +93,7 @@ resource "aws_glue_job" "glue_etl_job" {
 
   glue_version = "4.0"
   max_capacity = 2
+
+  depends_on = [aws_glue_crawler.postgres_crawler]
 }
 
