@@ -36,7 +36,7 @@ mapped = ApplyMapping.apply(
 glueContext.write_dynamic_frame.from_options(
     frame = mapped,
     connection_type = "s3",
-    connection_options = {"path": "s3://your-bucket/output/"},
+    connection_options = {"path": "s3://my-glue-etl-bucket-demo/output/"},
     format = "parquet"
 )
 
