@@ -37,6 +37,21 @@ jobs:
       - name: Run Glue Crawler
         run: aws glue start-crawler --name postgres-crawler
 
+      - name: Wait for Crawler to finish
+        run: |
+         echo "Waiting for crawler to finish..."
+         status=""
+         while [ "$status" != "READY" ]; do
+         status=$(aws glue get-crawler --name postgres-crawler --query 'Crawler.State' --output text)
+         echo "Current status: $status"
+         if [ "$status" == "FAILED" ]; then
+         echo "Crawler failed!"
+         exit 1
+         fi
+         sleep 10
+         done
+         echo "Crawler completed."
+
       - name: Run Glue ETL Job
         run: |
           aws glue start-job-run --job-name postgres-to-parquet-etl
