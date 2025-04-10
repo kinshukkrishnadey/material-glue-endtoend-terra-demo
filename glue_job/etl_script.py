@@ -16,7 +16,7 @@ job.init(args["JOB_NAME"], args)
 # Read from PostgreSQL using Glue Data Catalog
 datasource = glueContext.create_dynamic_frame.from_catalog(
     database = "postgres_catalog",
-    table_name = "customers"  # Must match catalog name
+    table_name = "postgredb_demo_public_customers" 
 )
 
 # Optional: Apply mapping / transformation
